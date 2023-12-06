@@ -75,7 +75,7 @@ const _transformation: Transformation = {
 const _changeEvent = { type: 'change' }
 const _startEvent = { type: 'start' }
 const _endEvent = { type: 'end' }
-
+const _panendEvent = { type: 'panEnd' };
 /**
  *
  * @param {CamOrthographicCamera | PerspectiveCameraera} camera Virtual camera used in the scene
@@ -683,7 +683,6 @@ class ArcballControls extends EventDispatcher {
 
             this.dispatchEvent(_changeEvent)
             this.dispatchEvent(_endEvent)
-
             break
 
           case 'FOV':
@@ -1108,6 +1107,13 @@ class ArcballControls extends EventDispatcher {
 
       this.activateGizmos(false)
       this.dispatchEvent(_changeEvent)
+      console.log("_panendEvent");
+      console.log("_panendEvent",this._mouseOp);
+      if(this._mouseOp=="PAN")
+      {
+        console.log("_panendEvent");
+        this.dispatchEvent( _panendEvent );
+      }
     }
 
     this.dispatchEvent(_endEvent)
